@@ -1,0 +1,3 @@
+name - place name
+vicinity- place adress
+types [] - place types
