@@ -102,8 +102,8 @@ namespace CRUD
                         {
                             nCityID = (int)oReader["CITY_ID"],
                             sCityName = (string)oReader["NAME"],
-                            fCityLat = (string)oReader["LAT"],
-                            fCityLng = (float)17
+                            fCityLat = (float)oReader["LAT"],
+                            fCityLng = (float)oReader["LNG"]
                         });
                     }
                 }

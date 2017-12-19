@@ -57,7 +57,7 @@ namespace REST
                     fCityLng = (float)oReader["LNG"];
                 }
             }
-            oStringBuilder.Append(endpoint + "?Location=" + fCityLat + "," + fCityLng + "&fRadius=" + radius + "&type=" + type + "&key=AIzaSyAGoeeEBe7hme9iWAnP_1a_XKCP544ar4I");
+            oStringBuilder.Append(endpoint + "?location=" + fCityLat + "," + fCityLng + "&fRadius=" + radius + "&type=" + type + "&key=AIzaSyAGoeeEBe7hme9iWAnP_1a_XKCP544ar4I");
 
             return oStringBuilder.ToString();
         }
@@ -72,17 +72,19 @@ namespace REST
             var oTypes = oJson["types"].ToList();
             Trace.WriteLine(oTypes);
             List<GooglePlacesView> lPlaces = new List<GooglePlacesView>();
+            List<string> lPlaceTypes = new List<string>();
             Trace.WriteLine(sUrl);
             for (int i = 0; i < oPlaces.Count; i++)
-            {
-                for(int j=0; j<oTypes.Count; i++)
+            {               
+                for (int j=0; j<oTypes.Count; i++)
                 {
                     Trace.WriteLine(sUrl);
                     lPlaces.Add(new GooglePlacesView
                     {
                         sCityName = city,
                         sPlaceName = (string)oPlaces[i]["name"],
-                        lPlaceType= (List<string>)oTypes[i][j]["types"],
+
+                        //lPlaceTypes.AddRange(oTypes[i][j]["types"]),
 
                         sPlaceAddress = (string)oPlaces[i]["vicinity"]
                     });
