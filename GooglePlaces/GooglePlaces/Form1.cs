@@ -11,6 +11,7 @@ using System.Configuration;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using CRUD;
+using REST;
 using System.IO;
 using System.Net;
 using System.Diagnostics;
@@ -22,67 +23,6 @@ namespace GooglePlaces
     public partial class Form1 : Form
     {
         public List<GooglePlacesView> lGPlaces = new List<GooglePlacesView>();
-        public static string CallRestMethod(string url)
-        {
-            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
-            webrequest.Method = "GET";
-            webrequest.ContentType = "application/x-www-form-urlencoded";
-            //webrequest.Headers.Add("Username", "xyz");
-            //webrequest.Headers.Add("Password", "abc");
-            HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
-            Encoding enc = System.Text.Encoding.GetEncoding("utf-8");
-            StreamReader responseStream = new StreamReader(webresponse.GetResponseStream(),
-            enc);
-            string result = string.Empty;
-            result = responseStream.ReadToEnd();
-            webresponse.Close();
-            return result;
-        }
-
-        public List<GooglePlacesView> GetPlaces()
-        {
-            string sCity = (string)comboBoxCity.SelectedItem;
-            string sType = (string)comboBoxType.SelectedItem;
-            float fRadius = (float)trackBarRadius.Value;
-            float fCityLat;
-            float fCityLng;
-            /*string sSqlConnectionString = ConfigurationManager.AppSettings["GooglePlacesUrl"];//fali mi ovo u app
-            using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
-            using (DbCommand oCommand = oConnection.CreateCommand())
-            {
-                oCommand.CommandText = "SELECT * FROM GooglePlaces_cities WHERE NAME =" + sCity;
-                oConnection.Open();
-                using (DbDataReader oReader = oCommand.ExecuteReader())
-                {
-                    fCityLat = (float)oReader["LAT"];
-                    fCityLng = (float)oReader["LNG"];
-                }
-            }
-            Trace.WriteLine(fCityLat);
-            Trace.WriteLine(fCityLng);*/
-            Trace.WriteLine(fRadius);
-            string sUrl = "https//:maps.googleapis.com/maps/api/place/nearbysearch/json?Location=45.831646,17.38554&fRadius=500&type='" + sType + "'&key=AIzaSyAGoeeEBe7hme9iWAnP_1a_XKCP544ar4I";
-            string sJson = CallRestMethod(sUrl);
-
-            JObject oJson = JObject.Parse(sJson);
-            var oPlaces = oJson["results"].ToList();
-            List<GooglePlacesView> lPlaces = new List<GooglePlacesView>();
-            Trace.WriteLine(sUrl);
-            for (int i=0; i<oPlaces.Count; i++)
-            {
-                Trace.WriteLine(sUrl);               
-                lPlaces.Add(new GooglePlacesView
-                {
-                    sCityName = sCity,
-                    sPlaceName = (string)oPlaces[i]["name"],
-                    sPlaceType = oPlaces[i]["types"]tolist,//problem, treba napravit jos jednu for petlju i spremit sve polje u listu tipova
-
-                    sPlaceAddress = (string)oPlaces[i]["vicinity"]
-                });
-            }
-            return lPlaces;
-        }
-
         public Form1()
         {
             InitializeComponent();
@@ -200,10 +140,13 @@ namespace GooglePlaces
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            lGPlaces = GetPlaces();
+            Rest oRest = new Rest();
+            string sCity = (string)comboBoxCity.SelectedItem;
+            string sType = (string)comboBoxType.SelectedItem;
+            float fRadius = (float)trackBarRadius.Value;
+            lGPlaces = oRest.GetPlaces(sCity, sType, fRadius);
             dataGridViewLocations.DataSource = lGPlaces;
         }
 
-        //dodati u tabu Administracija jos ikonice da uredivanje i brisanje tipova u datagridu.
     }
 }

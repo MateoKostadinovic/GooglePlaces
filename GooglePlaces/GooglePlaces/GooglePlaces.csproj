@@ -144,6 +144,10 @@
       <Project>{3786d84b-0cc8-4400-909a-0666150b5e66}</Project>
       <Name>CRUD</Name>
     </ProjectReference>
+    <ProjectReference Include="..\REST\REST.csproj">
+      <Project>{0810c495-4100-4907-afdf-1c4de2ae9923}</Project>
+      <Name>REST</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

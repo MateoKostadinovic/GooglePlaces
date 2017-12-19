@@ -10,7 +10,7 @@ namespace CRUD
     {
         public string sCityName { get; set;}
         public string sPlaceName { get; set; }
-        public List<string> sPlaceType { get; set; }
+        public List<string> lPlaceType { get; set; }
         public string sPlaceAddress { get; set; }
     }
 }

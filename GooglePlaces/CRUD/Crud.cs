@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using REST;
 
 namespace CRUD
 {
@@ -97,13 +98,13 @@ namespace CRUD
                 {
                     while (oReader.Read())
                     {
-                        /*lCities.Add(new City()//ovdje nesto ne valja cim ima nesto u bazi
+                        lCities.Add(new City()//ovdje nesto ne valja cim ima nesto u bazi
                         {
                             nCityID = (int)oReader["CITY_ID"],
                             sCityName = (string)oReader["NAME"],
                             fCityLat = (string)oReader["LAT"],
                             fCityLng = (float)17
-                        });*/
+                        });
                     }
                 }
             }
