@@ -50,6 +50,7 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.dataGridViewCities = new System.Windows.Forms.DataGridView();
+            this.inptRadiusValue = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -116,6 +117,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.inptRadiusValue);
             this.tabPage1.Controls.Add(this.btnSearch);
             this.tabPage1.Controls.Add(this.dataGridViewLocations);
             this.tabPage1.Controls.Add(this.comboBoxType);
@@ -172,13 +174,17 @@
             // 
             // trackBarRadius
             // 
+            this.trackBarRadius.LargeChange = 100;
             this.trackBarRadius.Location = new System.Drawing.Point(103, 156);
             this.trackBarRadius.Maximum = 50000;
-            this.trackBarRadius.Minimum = 1;
+            this.trackBarRadius.Minimum = 100;
             this.trackBarRadius.Name = "trackBarRadius";
             this.trackBarRadius.Size = new System.Drawing.Size(121, 45);
-            this.trackBarRadius.TabIndex = 3;
-            this.trackBarRadius.Value = 1;
+            this.trackBarRadius.SmallChange = 10;
+            this.trackBarRadius.TabIndex = 5;
+            this.trackBarRadius.TickFrequency = 100;
+            this.trackBarRadius.Value = 100;
+            this.trackBarRadius.Scroll += new System.EventHandler(this.trackBarRadius_Scroll);
             // 
             // lblRadius
             // 
@@ -284,6 +290,13 @@
             this.dataGridViewCities.TabIndex = 1;
             this.dataGridViewCities.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCities_CellContentClick);
             // 
+            // inptRadiusValue
+            // 
+            this.inptRadiusValue.Location = new System.Drawing.Point(23, 181);
+            this.inptRadiusValue.Name = "inptRadiusValue";
+            this.inptRadiusValue.Size = new System.Drawing.Size(72, 20);
+            this.inptRadiusValue.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,6 +347,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button btnAddCity;
         public System.Windows.Forms.DataGridView dataGridViewCities;
+        private System.Windows.Forms.TextBox inptRadiusValue;
     }
 }
 

@@ -68,13 +68,13 @@ namespace GooglePlaces
             dataGridViewCities.AutoGenerateColumns = false;
 
 
-            //COMBO-BOX GRADOVI
+            //COMBO- BOX GRADOVI
             List<String> lCity = lCities.Where(o => o.sCityName != "").Select(o => o.sCityName).Distinct().ToList();
             comboBoxCity.DataSource = lCity;
 
-            //COMBO-BOX TIPOVI
+            //COMBO- BOX TIPOVI
             List<String> lType = lTypes.Where(o => o.sTypeValue != "").Select(o => o.sTypeValue).Distinct().ToList();
-            comboBoxType.DataSource = lType;
+            comboBoxType.DataSource = lType;           
         }
 
         private void izlazToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,10 +143,14 @@ namespace GooglePlaces
             Rest oRest = new Rest();
             string sCity = (string)comboBoxCity.SelectedItem;
             string sType = (string)comboBoxType.SelectedItem;
-            float fRadius = (float)trackBarRadius.Value;
+            float fRadius = (int)trackBarRadius.Value;
             lGPlaces = oRest.GetPlaces(sCity, sType, fRadius);
             dataGridViewLocations.DataSource = lGPlaces;
         }
 
+        private void trackBarRadius_Scroll(object sender, EventArgs e)
+        {
+            inptRadiusValue.Text = "" + trackBarRadius.Value;
+        }
     }
 }

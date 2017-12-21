@@ -49,16 +49,16 @@ namespace REST
             using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
             using (DbCommand oCommand = oConnection.CreateCommand())
             {
-                oCommand.CommandText = "SELECT * FROM GooglePlaces_cities WHERE NAME =" + city;
+                oCommand.CommandText = "SELECT * FROM GooglePlaces_cities WHERE NAME = '" + city + "'";
                 oConnection.Open();
                 using (DbDataReader oReader = oCommand.ExecuteReader())
                 {
-                    fCityLat = (float)oReader["LAT"];
-                    fCityLng = (float)oReader["LNG"];
+                    fCityLat = 45;
+                    fCityLng = 17;
                 }
             }
-            oStringBuilder.Append(endpoint + "?location=" + fCityLat + "," + fCityLng + "&fRadius=" + radius + "&type=" + type + "&key=AIzaSyAGoeeEBe7hme9iWAnP_1a_XKCP544ar4I");
-
+            oStringBuilder.Append(endpoint + "?location=" + fCityLat + "," + fCityLng + "&radius=" + radius + "&type=" + type + "&key=AIzaSyAGoeeEBe7hme9iWAnP_1a_XKCP544ar4I");
+            Trace.WriteLine(oStringBuilder.ToString());
             return oStringBuilder.ToString();
         }
 
@@ -69,26 +69,24 @@ namespace REST
 
             JObject oJson = JObject.Parse(sJson);
             var oPlaces = oJson["results"].ToList();
-            var oTypes = oJson["types"].ToList();
-            Trace.WriteLine(oTypes);
+            //var oTypes = oJson["types"].ToList();
+            //Trace.WriteLine(oTypes);
             List<GooglePlacesView> lPlaces = new List<GooglePlacesView>();
-            List<string> lPlaceTypes = new List<string>();
+            //List<string> lPlaceTypes = new List<string>();
             Trace.WriteLine(sUrl);
             for (int i = 0; i < oPlaces.Count; i++)
-            {               
-                for (int j=0; j<oTypes.Count; i++)
+            {
+                /*
+                 var oTypes= oPlaces[i]["types"];
+                 */
+                Trace.WriteLine(sUrl);
+                lPlaces.Add(new GooglePlacesView
                 {
-                    Trace.WriteLine(sUrl);
-                    lPlaces.Add(new GooglePlacesView
-                    {
-                        sCityName = city,
-                        sPlaceName = (string)oPlaces[i]["name"],
-
-                        //lPlaceTypes.AddRange(oTypes[i][j]["types"]),
-
-                        sPlaceAddress = (string)oPlaces[i]["vicinity"]
-                    });
-                }
+                    sCityName = city,
+                    sPlaceName = (string)oPlaces[i]["name"],
+                    sPlaceType=type,
+                    sPlaceAddress = (string)oPlaces[i]["vicinity"]
+                });               
             }
             return lPlaces;
         }
