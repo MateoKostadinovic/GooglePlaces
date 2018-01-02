@@ -102,8 +102,8 @@ namespace CRUD
                         {
                             nCityID = (int)oReader["CITY_ID"],
                             sCityName = (string)oReader["NAME"],
-                            fCityLat = 45,
-                            fCityLng = 17
+                            dCityLat = (decimal)oReader["LAT"],
+                            dCityLng = (decimal)oReader["LNG"]
 
                         });
                     }
@@ -118,8 +118,8 @@ namespace CRUD
             using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
             using (DbCommand oCommand = oConnection.CreateCommand())
             {
-                Trace.WriteLine("UPDATE GooglePlaces_cities SET NAME = '" + oCity.sCityName + "', LAT = '" + oCity.fCityLat + "', LNG='" + oCity.fCityLng + "'");
-                oCommand.CommandText = "UPDATE GooglePlaces_cities SET NAME = '" + oCity.sCityName + "', LAT = '" + oCity.fCityLat + "', LNG= '" + oCity.fCityLng + "' WHERE CITY_ID = " + oCity.nCityID;
+                Trace.WriteLine("UPDATE GooglePlaces_cities SET NAME = '" + oCity.sCityName + "', LAT = '" + oCity.dCityLat + "', LNG='" + oCity.dCityLng + "'");
+                oCommand.CommandText = "UPDATE GooglePlaces_cities SET NAME = '" + oCity.sCityName + "', LAT = '" + oCity.dCityLat + "', LNG= '" + oCity.dCityLng + "' WHERE CITY_ID = " + oCity.nCityID;
                 oConnection.Open();
                 using (DbDataReader oReader = oCommand.ExecuteReader())
                 {
@@ -149,7 +149,7 @@ namespace CRUD
             using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
             using (DbCommand oCommand = oConnection.CreateCommand())//nakon ove funkcije memorija se oslobada zbog using
             {
-                oCommand.CommandText = "INSERT INTO GooglePlaces_cities (NAME, LAT, LNG) VALUES ('" + oCity.sCityName + "','" + oCity.fCityLat + "','" + oCity.fCityLng + "')";
+                oCommand.CommandText = "INSERT INTO GooglePlaces_cities (NAME, LAT, LNG) VALUES ('" + oCity.sCityName + "','" + oCity.dCityLat + "','" + oCity.dCityLng + "')";
                 oConnection.Open();
                 using (DbDataReader oReader = oCommand.ExecuteReader())
                 {

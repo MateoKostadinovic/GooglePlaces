@@ -43,8 +43,8 @@ namespace REST
             StringBuilder oStringBuilder = new StringBuilder();
             string endpoint = ConfigurationManager.AppSettings["GooglePlacesAPI"];
             
-            float fCityLat;
-            float fCityLng;
+            decimal dCityLat;
+            decimal dCityLng;
             string sSqlConnectionString = ConfigurationManager.AppSettings["GooglePlacesUrl"];//fali mi ovo u app
             using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
             using (DbCommand oCommand = oConnection.CreateCommand())
@@ -53,11 +53,11 @@ namespace REST
                 oConnection.Open();
                 using (DbDataReader oReader = oCommand.ExecuteReader())
                 {
-                    fCityLat = 45;
-                    fCityLng = 17;
+                    dCityLat = (decimal)oReader["LAT"];
+                    dCityLng = (decimal)oReader["LAT"];
                 }
             }
-            oStringBuilder.Append(endpoint + "?location=" + fCityLat + "," + fCityLng + "&radius=" + radius + "&type=" + type + "&key=AIzaSyAGoeeEBe7hme9iWAnP_1a_XKCP544ar4I");
+            oStringBuilder.Append(endpoint + "?location=" + dCityLat + "," + dCityLng + "&radius=" + radius + "&type=" + type + "&key=AIzaSyAGoeeEBe7hme9iWAnP_1a_XKCP544ar4I");
             Trace.WriteLine(oStringBuilder.ToString());
             return oStringBuilder.ToString();
         }
@@ -69,7 +69,7 @@ namespace REST
 
             JObject oJson = JObject.Parse(sJson);
             var oPlaces = oJson["results"].ToList();
-            //var oTypes = oJson["types"].ToList();
+            
             //Trace.WriteLine(oTypes);
             List<GooglePlacesView> lPlaces = new List<GooglePlacesView>();
             //List<string> lPlaceTypes = new List<string>();
@@ -84,7 +84,7 @@ namespace REST
                 {
                     sCityName = city,
                     sPlaceName = (string)oPlaces[i]["name"],
-                    sPlaceType=type,
+                    sPlaceType = type,
                     sPlaceAddress = (string)oPlaces[i]["vicinity"]
                 });               
             }

@@ -10,7 +10,7 @@ namespace CRUD
     {
         public int nCityID { get; set; }
         public string sCityName { get; set; }
-        public float fCityLat { get; set; }
-        public float fCityLng { get; set; }
+        public decimal dCityLat { get; set; }
+        public decimal dCityLng { get; set; }
     }
 }
