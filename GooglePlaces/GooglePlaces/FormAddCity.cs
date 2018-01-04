@@ -27,6 +27,7 @@ namespace GooglePlaces
             oCity.sCityName = inptAddCityName.Text;
             oCity.dCityLat = Convert.ToDecimal(inptAddCityLat.Text);
             oCity.dCityLng = Convert.ToDecimal(inptAddCityLng.Text);
+            latview.Text = "" + inptAddCityLat;
 
             Crud oCrud = new Crud();
             oCrud.SaveNewCity(oCity);

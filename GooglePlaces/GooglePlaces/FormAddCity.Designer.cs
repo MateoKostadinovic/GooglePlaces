@@ -35,6 +35,8 @@
             this.inptAddCityLat = new System.Windows.Forms.TextBox();
             this.inptAddCityLng = new System.Windows.Forms.TextBox();
             this.btnAddCity2 = new System.Windows.Forms.Button();
+            this.latview = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAddCityName
@@ -97,11 +99,29 @@
             this.btnAddCity2.UseVisualStyleBackColor = false;
             this.btnAddCity2.Click += new System.EventHandler(this.btnAddCity2_Click);
             // 
+            // latview
+            // 
+            this.latview.Location = new System.Drawing.Point(42, 182);
+            this.latview.Name = "latview";
+            this.latview.Size = new System.Drawing.Size(100, 20);
+            this.latview.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(89, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "TEST";
+            // 
             // FormAddCity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 261);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.latview);
             this.Controls.Add(this.btnAddCity2);
             this.Controls.Add(this.inptAddCityLng);
             this.Controls.Add(this.inptAddCityLat);
@@ -125,5 +145,7 @@
         private System.Windows.Forms.TextBox inptAddCityLat;
         private System.Windows.Forms.TextBox inptAddCityLng;
         private System.Windows.Forms.Button btnAddCity2;
+        private System.Windows.Forms.TextBox latview;
+        private System.Windows.Forms.Label label1;
     }
 }
