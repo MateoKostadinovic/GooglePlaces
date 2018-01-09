@@ -64,8 +64,16 @@ namespace GooglePlaces
             oDeleteButtonCity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCities.Columns.Add(oDeleteButtonCity);
 
+            //button za spremanje moje lokacije
+            DataGridViewImageColumn oSaveMyLocation = new DataGridViewImageColumn();//nova kolona tipa Image
+            oSaveMyLocation.Image = Image.FromFile("C:\\Fakultet\\Programiranje u .NET okolini\\KV\\if_add_126583.png");
+            oSaveMyLocation.Width = 20;
+            oSaveMyLocation.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewLocations.Columns.Add(oSaveMyLocation);
+
             dataGridViewTypes.AutoGenerateColumns = false;//program nece sam stvoriti sve kolone, lijepo ce se posloziti
             dataGridViewCities.AutoGenerateColumns = false;
+            dataGridViewLocations.AutoGenerateColumns = false;
 
 
             //COMBO- BOX GRADOVI

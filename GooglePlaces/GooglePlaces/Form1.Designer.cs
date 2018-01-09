@@ -35,6 +35,7 @@
             this.oProgramuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
             this.inptRadiusValue = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridViewLocations = new System.Windows.Forms.DataGridView();
@@ -51,7 +52,6 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.dataGridViewCities = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -118,7 +118,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.inptRadiusValue);
             this.tabPage1.Controls.Add(this.btnSearch);
             this.tabPage1.Controls.Add(this.dataGridViewLocations);
@@ -136,6 +136,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Pretraga";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(327, 18);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 13);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "TESTTTT";
             // 
             // inptRadiusValue
             // 
@@ -299,15 +308,6 @@
             this.dataGridViewCities.TabIndex = 1;
             this.dataGridViewCities.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCities_CellContentClick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(327, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "TESTTTT";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,7 +359,7 @@
         private System.Windows.Forms.Button btnAddCity;
         public System.Windows.Forms.DataGridView dataGridViewCities;
         private System.Windows.Forms.TextBox inptRadiusValue;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label10;
     }
 }
 
